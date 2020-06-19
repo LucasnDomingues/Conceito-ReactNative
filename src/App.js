@@ -17,10 +17,10 @@ export default function App() {
   
   async function handleLikeRepository(id) {
     const response = await api.post(`repositories/${id}/like`);
-    const index = repositories.findIndex( repository => repository.name === id);
+    const index = repositories.findIndex( repository => repository.id === id);
     const newRepositories = repositories;
     newRepositories[index] = response.data;
-    setRepositories(newRepositories); 
+    setRepositories([...newRepositories]);
   }
 
   useEffect( () => {
@@ -53,7 +53,7 @@ export default function App() {
               <View style={styles.likesContainer}>
                 <Text
                 style={styles.likeText}
-                testID={`respository-likes-${repository.id}`}
+                testID={`repository-likes-${repository.id}`}
                 >
                   {repository.likes} curtidas
                 </Text>
